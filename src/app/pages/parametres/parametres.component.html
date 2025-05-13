@@ -1,0 +1,62 @@
+<div class="page-container">
+  <h1>Paramètres du système</h1>
+  
+  <div class="settings-container">
+    <div class="settings-section">
+      <h2>Paramètres généraux</h2>
+      <div class="setting-item">
+        <label>Nom du site</label>
+        <input type="text" value="Admin Dashboard">
+      </div>
+      <div class="setting-item">
+        <label>Description</label>
+        <textarea rows="3">Plateforme d'administration professionnelle</textarea>
+      </div>
+      <div class="setting-item">
+        <label>Langue par défaut</label>
+        <select>
+          <option value="fr" selected>Français</option>
+          <option value="en">Anglais</option>
+          <option value="es">Espagnol</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <h2>Paramètres de notification</h2>
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Activer les notifications par email
+        </label>
+      </div>
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Notifications de connexion
+        </label>
+      </div>
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox"> Notifications de rapport
+        </label>
+      </div>
+    </div>
+    
+    <div class="settings-section">
+      <h2>Sécurité</h2>
+      <div class="setting-item">
+        <label>Délai d'expiration de session (minutes)</label>
+        <input type="number" value="30">
+      </div>
+      <div class="setting-item">
+        <label class="checkbox-label">
+          <input type="checkbox" checked> Authentification à deux facteurs
+        </label>
+      </div>
+    </div>
+  </div>
+  
+  <div class="actions-buttons">
+    <button class="save-btn">Enregistrer les modifications</button>
+    <button class="reset-btn">Réinitialiser</button>
+  </div>
+</div>

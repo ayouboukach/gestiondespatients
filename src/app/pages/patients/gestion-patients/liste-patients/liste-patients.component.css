@@ -1,0 +1,272 @@
+/* Styles for liste-utilisateurs component */ 
+.container {
+  padding: 0;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 8px;
+}
+
+.btn-add {
+  padding: 4px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 32px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-add:hover {
+  background-color: #0056b3;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+  color: #495057;
+}
+
+tr:hover {
+  background-color: #f8f9fa;
+}
+
+.selected-row {
+  background-color: #e3f2fd !important;
+}
+
+.details-row td {
+  padding: 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 4px;
+}
+
+.btn-details, .btn-edit, .btn-delete {
+  padding: 2px 8px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  height: 24px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-details {
+  background-color: #6c757d;
+  color: white;
+  font-weight: bold;
+  width: 24px;
+  justify-content: center;
+}
+
+.btn-details:hover {
+  background-color: #5a6268;
+}
+
+.btn-edit {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #218838;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.user-details-container {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 4px;
+}
+
+.user-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.user-details-header h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #495057;
+  font-weight: 500;
+}
+
+.user-details-content {
+  padding: 8px;
+}
+
+.detail-section {
+  margin-bottom: 12px;
+}
+
+.detail-section h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-item label {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.detail-item span {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+/* Styles pour la boîte de dialogue de confirmation */
+.confirmation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+.dialog-header {
+  margin-bottom: 15px;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.dialog-message {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dialog-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+.btn-confirm {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background-color: #c82333;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.search-input::placeholder {
+  color: #6c757d;
+} 

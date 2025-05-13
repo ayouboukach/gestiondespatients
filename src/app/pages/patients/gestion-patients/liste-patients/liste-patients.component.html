@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <div class="search-container">
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (ngModelChange)="onSearch()"
+        placeholder="Rechercher par nom ou prénom..."
+        class="search-input"
+      >
+    </div>
+    <a class="btn-add" [routerLink]="['/admin/patients/gestion/nouveau-patient']">Ajouter patient</a>
+  </div>
+  
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+          <th>Profession</th>
+          <th>Catégorie</th>
+          <th>Assuré</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let patient of filteredPatients">
+          <tr [class.selected-row]="selectedPatient?.id === patient.id">
+            <td>{{ patient.last_name }}</td>
+            <td>{{ patient.first_name }}</td>
+            <td>{{ patient.email }}</td>
+            <td>{{ patient.phone }}</td>
+            <td>{{ patient.profession }}</td>
+            <td>{{ patient.category }}</td>
+            <td>{{ patient.is_assured ? 'Oui' : 'Non' }}</td>
+            <td class="actions-cell">
+              <button class="btn-details" (click)="selectedPatient === patient ? hideUserDetails() : showUserDetails(patient)">
+                {{ selectedPatient === patient ? '-' : '+' }}
+              </button>
+              <button class="btn-edit" (click)="modifyPatient(patient)">Modifier</button>
+              <button class="btn-delete" (click)="deleteUser(patient.id)">Supprimer</button>
+            </td>
+          </tr>
+          <tr *ngIf="selectedPatient?.id === patient.id" class="details-row">
+            <td colspan="8">
+              <div class="user-details-container">
+                <div class="user-details-header">
+                  <h3>Détails du patient</h3>
+                </div>
+                <div class="user-details-content" *ngIf="selectedPatient">
+                  <div class="detail-section">
+                    <h4>Informations complètes</h4>
+                    <div class="detail-row">
+                      <div class="detail-item"><label>Nom:</label><span>{{ selectedPatient.last_name }}</span></div>
+                      <div class="detail-item"><label>Prénom:</label><span>{{ selectedPatient.first_name }}</span></div>
+                      <div class="detail-item"><label>Email:</label><span>{{ selectedPatient.email }}</span></div>
+                      <div class="detail-item"><label>Téléphone:</label><span>{{ selectedPatient.phone }}</span></div>
+                      <div class="detail-item"><label>Adresse:</label><span>{{ selectedPatient.address }}</span></div>
+                      <div class="detail-item"><label>Ville:</label><span>{{ selectedPatient.city }}</span></div>
+                      <div class="detail-item"><label>Pays:</label><span>{{ selectedPatient.country }}</span></div>
+                      <div class="detail-item"><label>Code postal:</label><span>{{ selectedPatient.postal_code }}</span></div>
+                      <div class="detail-item"><label>Préfecture:</label><span>{{ selectedPatient.prefecture }}</span></div>
+                      <div class="detail-item"><label>Profession:</label><span>{{ selectedPatient.profession }}</span></div>
+                      <div class="detail-item"><label>Catégorie:</label><span>{{ selectedPatient.category }}</span></div>
+                      <div class="detail-item"><label>Langues parlées:</label><span>{{ selectedPatient.spoken_languages }}</span></div>
+                      <div class="detail-item"><label>Contact d'urgence:</label><span>{{ selectedPatient.emergency_contact }}</span></div>
+                      <div class="detail-item"><label>Ethnicité:</label><span>{{ selectedPatient.ethnicity }}</span></div>
+                      <div class="detail-item"><label>Genre:</label><span>{{ selectedPatient.gender }}</span></div>
+                      <div class="detail-item"><label>Date de naissance:</label><span>{{ selectedPatient.birth_date | date }}</span></div>
+                      <div class="detail-item"><label>Âge:</label><span>{{ selectedPatient.age }}</span></div>
+                      <div class="detail-item"><label>CNIE:</label><span>{{ selectedPatient.cnie }}</span></div>
+                      <div class="detail-item"><label>Nationalité:</label><span>{{ selectedPatient.nationality }}</span></div>
+                      <div class="detail-item"><label>Numéro dossier papier:</label><span>{{ selectedPatient.num_dossier_papier }}</span></div>
+                      <div class="detail-item"><label>Numéro passeport:</label><span>{{ selectedPatient.num_passport }}</span></div>
+                      <div class="detail-item"><label>Statut marital:</label><span>{{ selectedPatient.marital_status }}</span></div>
+                      <div class="detail-item"><label>Tarification:</label><span>{{ selectedPatient.pricing }}</span></div>
+                      <div class="detail-item"><label>VIP:</label><span>{{ selectedPatient.vip ? 'Oui' : 'Non' }}</span></div>
+                      <div class="detail-item"><label>Assuré:</label><span>{{ selectedPatient.is_assured ? 'Oui' : 'Non' }}</span></div>
+                      <div class="detail-item"><label>Confidentiel:</label><span>{{ selectedPatient.is_confidential ? 'Oui' : 'Non' }}</span></div>
+                      <div class="detail-item"><label>Favori:</label><span>{{ selectedPatient.is_favorite ? 'Oui' : 'Non' }}</span></div>
+                    </div>
+                  </div>
+                  <div class="detail-section" *ngIf="selectedPatient.assurances?.length">
+                    <h4>Assurances</h4>
+                    <div *ngFor="let assurance of selectedPatient.assurances" class="detail-row">
+                      <div class="detail-item"><label>Organisation:</label><span>{{ assurance.organization }}</span></div>
+                      <div class="detail-item"><label>Numéro d'affiliation:</label><span>{{ assurance.num_affiliation }}</span></div>
+                      <div class="detail-item"><label>Bénéficiaire:</label><span>{{ assurance.beneficiary }}</span></div>
+                      <div class="detail-item"><label>Nom:</label><span>{{ assurance.last_name }}</span></div>
+                      <div class="detail-item"><label>Prénom:</label><span>{{ assurance.first_name }}</span></div>
+                      <div class="detail-item"><label>Adresse:</label><span>{{ assurance.address }}</span></div>
+                      <div class="detail-item"><label>Ville:</label><span>{{ assurance.city }}</span></div>
+                      <div class="detail-item"><label>Date de naissance:</label><span>{{ assurance.birthdate | date }}</span></div>
+                      <div class="detail-item"><label>CNIE:</label><span>{{ assurance.cnie }}</span></div>
+                      <div class="detail-item"><label>Titre civil:</label><span>{{ assurance.civil_title }}</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Boîte de dialogue de confirmation -->
+<div class="confirmation-dialog" *ngIf="showDeleteConfirmation">
+  <div class="dialog-content">
+    <div class="dialog-header">
+      <h3>Confirmer la suppression</h3>
+    </div>
+    <div class="dialog-message">
+      Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.
+    </div>
+    <div class="dialog-actions">
+      <button class="dialog-btn btn-cancel" (click)="cancelDelete()">Annuler</button>
+      <button class="dialog-btn btn-confirm" (click)="confirmDelete()">Supprimer</button>
+    </div>
+  </div>
+</div>

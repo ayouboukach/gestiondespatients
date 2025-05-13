@@ -1,0 +1,172 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un patient</h2>
+  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <!-- Informations personnelles -->
+    <div class="form-section">
+      <h3>Informations personnelles</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="last_name">Nom <span class="required-star">*</span></label>
+          <input type="text" id="last_name" formControlName="last_name" class="form-control" [class.is-invalid]="isFieldInvalid('last_name')" required>
+        </div>
+        <div class="form-group">
+          <label for="first_name">Prénom <span class="required-star">*</span></label>
+          <input type="text" id="first_name" formControlName="first_name" class="form-control" [class.is-invalid]="isFieldInvalid('first_name')" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email <span class="required-star">*</span></label>
+          <input type="email" id="email" formControlName="email" class="form-control" [class.is-invalid]="isFieldInvalid('email')" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Téléphone <span class="required-star">*</span></label>
+          <input type="text" id="phone" formControlName="phone" class="form-control" [class.is-invalid]="isFieldInvalid('phone')" required placeholder="+212XXXXXXXXX">
+          <div class="invalid-feedback" *ngIf="userForm.get('phone')?.errors?.['pattern']">
+            Le numéro de téléphone doit commencer par +212 suivi de 9 chiffres
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Adresse <span class="required-star">*</span></label>
+          <input type="text" id="address" formControlName="address" class="form-control" [class.is-invalid]="isFieldInvalid('address')" required>
+        </div>
+        <div class="form-group">
+          <label for="city">Ville <span class="required-star">*</span></label>
+          <input type="text" id="city" formControlName="city" class="form-control" [class.is-invalid]="isFieldInvalid('city')" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="country">Pays <span class="required-star">*</span></label>
+          <input type="text" id="country" formControlName="country" class="form-control" [class.is-invalid]="isFieldInvalid('country')" required>
+        </div>
+        <div class="form-group">
+          <label for="postal_code">Code postal <span class="required-star">*</span></label>
+          <input type="text" id="postal_code" formControlName="postal_code" class="form-control" [class.is-invalid]="isFieldInvalid('postal_code')" required>
+        </div>
+        <div class="form-group">
+          <label for="prefecture">Préfecture <span class="required-star">*</span></label>
+          <input type="text" id="prefecture" formControlName="prefecture" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="birth_date">Date de naissance <span class="required-star">*</span></label>
+          <input type="date" id="birth_date" formControlName="birth_date" class="form-control" [class.is-invalid]="isFieldInvalid('birth_date')" required>
+        <!--<ng-container *ngIf="userForm.get('birth_date') as birthDateCtrl">
+            <div class="invalid-feedback" *ngIf="birthDateCtrl.errors && birthDateCtrl.errors['futureBirthDate']">
+              La date de naissance doit être antérieure à la date du jour.
+            </div>
+          </ng-container>-->
+        </div>
+        <div class="form-group">
+          <label for="age">Âge <span class="required-star">*</span></label>
+          <input type="number" id="age" formControlName="age" class="form-control" [class.is-invalid]="isFieldInvalid('age')" required>
+        </div>
+        <div class="form-group">
+          <label for="gender">Genre <span class="required-star">*</span></label>
+          <select id="gender" formControlName="gender" class="form-control" [class.is-invalid]="isFieldInvalid('gender')" required>
+            <option value="">Sélectionner</option>
+            <option *ngFor="let g of genders" [value]="g">{{ g }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cnie">CNIE <span class="required-star">*</span></label>
+          <input type="text" id="cnie" formControlName="cnie" class="form-control" [class.is-invalid]="isFieldInvalid('cnie')" required>
+        </div>
+        <div class="form-group">
+          <label for="nationality">Nationalité <span class="required-star">*</span></label>
+          <input type="text" id="nationality" formControlName="nationality" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="marital_status">Statut marital <span class="required-star">*</span></label>
+          <input type="text" id="marital_status" formControlName="marital_status" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="num_dossier_papier">Numéro dossier papier <span class="required-star">*</span></label>
+          <input type="text" id="num_dossier_papier" formControlName="num_dossier_papier" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="num_passport">Numéro passeport <span class="required-star">*</span></label>
+          <input type="text" id="num_passport" formControlName="num_passport" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="emergency_contact">Contact d'urgence <span class="required-star">*</span></label>
+          <input type="text" id="emergency_contact" formControlName="emergency_contact" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ethnicity">Ethnicité <span class="required-star">*</span></label>
+          <input type="text" id="ethnicity" formControlName="ethnicity" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Langues parlées <span class="required-star">*</span></label>
+          <div class="checkbox-group">
+            <label *ngFor="let lang of availableLanguages" class="checkbox-inline">
+              <input type="checkbox"
+                     [checked]="userForm.get('spoken_languages')?.value?.includes(lang)"
+                     (change)="onLanguageChange(lang, $event)" required>
+              {{ lang }}
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="category">Catégorie <span class="required-star">*</span></label>
+          <input type="text" id="category" formControlName="category" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="profession">Profession <span class="required-star">*</span></label>
+          <input type="text" id="profession" formControlName="profession" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="pricing">Tarification <span class="required-star">*</span></label>
+          <input type="text" id="pricing" formControlName="pricing" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="vip-switch">VIP</label>
+          <label class="switch">
+            <input id="vip-switch" type="checkbox" formControlName="vip">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="is-assured-switch">Assuré</label>
+          <label class="switch">
+            <input id="is-assured-switch" type="checkbox" formControlName="is_assured">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="is-confidential-switch">Confidentiel</label>
+          <label class="switch">
+            <input id="is-confidential-switch" type="checkbox" formControlName="is_confidential">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="is-favorite-switch">Favori</label>
+          <label class="switch">
+            <input id="is-favorite-switch" type="checkbox" formControlName="is_favorite">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" [routerLink]="['/admin/patients/gestion/liste']">Annuler</button>
+      <button type="submit" class="btn-submit" [disabled]="!isFormValid">
+        {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+      </button>
+    </div>
+  </form>
+</div>

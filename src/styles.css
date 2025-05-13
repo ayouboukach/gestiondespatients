@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #f5f7fa;
+  }
+  
+  /* Fixed Navbar Styles */
+  app-navbar .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin-left: 250px; /* Adjust based on sidebar width */
+    width: calc(100% - 250px);
+  }
+  
+  .main-content {
+    padding-top: 70px; /* Adjust based on navbar height */
+  }
+  
+  /* Ensure other components don't overlap with fixed navbar */
+  app-content {
+    display: block;
+    padding-top: 10px;
+  }
+  
