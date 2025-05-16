@@ -1,0 +1,478 @@
+/* Styles for Angular Material Liste Assurances component */
+.container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header section with search and add button */
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+mat-form-field {
+  margin-bottom: -1.25em; /* Reduce bottom space */
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Table styles */
+.table-container {
+  position: relative;
+  overflow: auto;
+  border-radius: 5px;
+  background: #fff;
+  /* Remove box-shadow for a flat look */
+  box-shadow: none !important;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.selected-row {
+  background-color: rgba(63, 81, 181, 0.08) !important;
+}
+
+/* Loading indicator */
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.05);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Details panel styles */
+.details-panel {
+  margin-top: 0;
+  box-shadow: none;
+  border-radius: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.details-content {
+  padding: 16px 8px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.detail-item {
+  margin-bottom: 12px;
+}
+
+.detail-label {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animations */
+.mat-expansion-panel {
+  overflow: hidden;
+}
+
+.mat-expansion-panel-header {
+  transition: height 225ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.mat-expansion-panel-body {
+  padding: 0 24px 16px;
+}
+
+/* Styles for liste-utilisateurs component */ 
+.main-card {
+  margin-bottom: 24px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+mat-card-title {
+  margin-bottom: 16px !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  color: #3f51b5;
+}
+
+.add-button {
+  height: 40px;
+}
+
+mat-card-content {
+  padding: 0 !important;
+}
+
+.no-data-cell {
+  padding: 16px;
+  text-align: center;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.assurance-table {
+  width: 100%;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Detail row styling */
+.detail-row {
+  height: 0;
+}
+
+.detail-cell {
+  padding: 0 !important;
+}
+
+.detail-container {
+  overflow: hidden;
+  padding: 8px 24px 24px;
+}
+
+.detail-card {
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.user-details-container {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 4px;
+}
+
+.user-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.user-details-header h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #495057;
+  font-weight: 500;
+}
+
+.user-details-content {
+  padding: 8px;
+}
+
+.detail-section {
+  margin-bottom: 12px;
+}
+
+.detail-section h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-item label {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.detail-item span {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+/* Styles pour la boîte de dialogue de confirmation */
+.confirmation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+.dialog-header {
+  margin-bottom: 15px;
+}
+
+.dialog-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.dialog-message {
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dialog-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+.btn-confirm {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background-color: #c82333;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.search-input::placeholder {
+  color: #6c757d;
+}
+
+.compact-search-icon{
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.compact-search-label
+{
+  font-size: 12px;
+  margin-bottom: -10px;
+}
+/* Compact search field with minimized height */
+.example-form-field{
+  max-width: 250px;
+  min-width: 200px !important;
+  font-size: 14px;
+}
+
+.compact-search .mat-mdc-form-field-infix {
+  padding: 4px 0 !important;
+  min-height: 28px !important;
+}
+
+.compact-search .mat-mdc-text-field-wrapper {
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 20px;
+}
+
+.compact-search .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.compact-search .mat-mdc-form-fie
+ld-flex {
+  min-height: unset !important;
+}
+
+.compact-search .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.compact-search input.mat-mdc-input-element {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Expanded row styles */
+.details-wrapper {
+  overflow: hidden;
+  padding: 8px 16px 16px;
+}
+
+.details-card {
+  margin: 8px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+tr.mat-mdc-row.selected-row {
+  background-color: rgba(63, 81, 181, 0.08);
+  border-bottom: none !important;
+}
+
+tr.mat-mdc-row:not(.selected-row) + tr.mat-mdc-row[expandable-row] {
+  display: none;
+}
+
+.mat-column-expandedDetail {
+  border-bottom: none !important;
+}
+
+/* Animation */
+@keyframes detailExpand {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+.btn-ajouter-assurance {
+  background: #006dc0 !important;
+  color: #fff !important;
+  font-weight: 400;
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 34px;
+  box-shadow: none !important;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  min-width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.btn-ajouter-assurance:hover {
+  background: #0076d7 !important;
+}
+
+.btn-ajouter-assurance mat-icon {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.table-container table,
+.table-container .mat-mdc-header-cell,
+.table-container .mat-mdc-cell {
+  font-size: 12px !important;
+}
+
+.table-container .mat-mdc-header-cell {
+  font-weight: 600;
+}
+
+.table-container .mat-mdc-row,
+.table-container .mat-mdc-header-row {
+  height: 32px !important;
+  min-height: 32px !important;
+}
+
+.header-card{
+  height: 70px;
+}

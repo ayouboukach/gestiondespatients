@@ -1,14 +1,33 @@
-<div class="sidebar">
-  <div class="logo">
-    <h2>Magma</h2>
-    <h6>Exzental Solutions</h6>
-  </div>
-  <div class="menu">
-    <ul>
-      <li><a routerLink="accueil" routerLinkActive="active">Accueil</a></li>
-      <li><a routerLink="patients" routerLinkActive="active">Gestion des patients</a></li>
-      <li><a routerLink="parametres" routerLinkActive="active">Gestion des assurances</a></li>
-      <li><a routerLink="rapports" routerLinkActive="active">Gestion des relations</a></li>
-    </ul>
-  </div>
+<div class="sidebar-wrapper">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav class="sidebar" [mode]="'side'" [opened]="isExpanded" fixedInViewport="false">
+      <mat-toolbar class="logo-container">
+        <div class="logo">
+          <h2>Magma</h2>
+          <h6>Exzental Solutions</h6>
+        </div>
+      </mat-toolbar>
+      
+    
+      
+      <mat-nav-list>
+        <a mat-list-item routerLink="accueil" routerLinkActive="active">
+          <mat-icon>home</mat-icon>
+          <span>Accueil</span>
+        </a>
+        <a mat-list-item routerLink="patients" routerLinkActive="active">
+          <mat-icon>people</mat-icon>
+          <span>Gestion des patients</span>
+        </a>
+        <a mat-list-item routerLink="assurances" routerLinkActive="active">
+          <mat-icon>shield</mat-icon>
+          <span>Gestion des assurances</span>
+        </a>
+        <a mat-list-item routerLink="rapports" routerLinkActive="active">
+          <mat-icon>compare_arrows</mat-icon>
+          <span>Gestion des relations</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
 </div>

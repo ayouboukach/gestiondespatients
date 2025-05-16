@@ -1,11 +1,40 @@
-<div class="navbar">
-  <div class="left">
-    <h3>Admin Dashboard</h3>
+<mat-toolbar class="navbar-container">
+  <div class="navbar-left">
+    <button mat-icon-button class="menu-button" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="app-title">Admin Dashboard</span>
   </div>
-  <div class="right">
-    <div class="user-info">
+  
+  <div class="navbar-right">
+    <button mat-icon-button class="notification-button">
+      <mat-icon>notifications_none</mat-icon>
+    </button>
+    
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+      <mat-icon class="user-icon">account_circle</mat-icon>
       <span class="username">Admin User</span>
-      <button class="logout-btn">Déconnexion</button>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    
+    <mat-menu #userMenu="matMenu" xPosition="before" class="user-menu">
+      <div class="menu-header">
+        <strong>Admin User</strong>
     </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Mon profil</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Paramètres</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item class="logout-item">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Déconnexion</span>
+      </button>
+    </mat-menu>
   </div>
-</div>
+</mat-toolbar>

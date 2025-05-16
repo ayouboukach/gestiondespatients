@@ -1,0 +1,92 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Modifier' : 'Ajouter' }} une assurance</h2>
+  
+  <form [formGroup]="assuranceForm" (ngSubmit)="onSubmit()" class="assurance-form">
+    <div class="form-section">
+      <h3>Informations de l'assurance</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="organization">Organisation <span class="required-star">*</span></label>
+          <input type="text" id="organization" formControlName="organization" class="form-control" [class.is-invalid]="estChampInvalide('organization')" required>
+        </div>
+        <div class="form-group">
+          <label for="num_affiliation">Numéro d'affiliation <span class="required-star">*</span></label>
+          <input type="text" id="num_affiliation" formControlName="num_affiliation" class="form-control" [class.is-invalid]="estChampInvalide('num_affiliation')" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="beneficiary">Bénéficiaire <span class="required-star">*</span></label>
+          <select id="beneficiary" formControlName="beneficiary" class="form-control" [class.is-invalid]="estChampInvalide('beneficiary')" required>
+            <option value="">Sélectionner</option>
+            <option *ngFor="let type of beneficiaryTypes" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="civil_title">Titre civil <span class="required-star">*</span></label>
+          <input type="text" id="civil_title" formControlName="civil_title" class="form-control" [class.is-invalid]="estChampInvalide('civil_title')" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="last_name">Nom <span class="required-star">*</span></label>
+          <input type="text" id="last_name" formControlName="last_name" class="form-control" [class.is-invalid]="estChampInvalide('last_name')" [readonly]="!!selectedPatient" required>
+        </div>
+        <div class="form-group">
+          <label for="first_name">Prénom <span class="required-star">*</span></label>
+          <input type="text" id="first_name" formControlName="first_name" class="form-control" [class.is-invalid]="estChampInvalide('first_name')" [readonly]="!!selectedPatient" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="birthdate">Date de naissance <span class="required-star">*</span></label>
+          <input 
+            type="date" 
+            id="birthdate" 
+            formControlName="birthdate" 
+            class="form-control" 
+            [class.is-invalid]="estChampInvalide('birthdate')" 
+            [value]="assuranceForm.get('birthdate')?.value | date:'yyyy-MM-dd'"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="cnie">CNIE <span class="required-star">*</span></label>
+          <input type="text" id="cnie" formControlName="cnie" class="form-control" [class.is-invalid]="estChampInvalide('cnie')" [readonly]="!!selectedPatient" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="address">Adresse <span class="required-star">*</span></label>
+          <input type="text" id="address" formControlName="address" class="form-control" [class.is-invalid]="estChampInvalide('address')" [readonly]="!!selectedPatient" required>
+        </div>
+        <div class="form-group">
+          <label for="city">Ville <span class="required-star">*</span></label>
+          <input type="text" id="city" formControlName="city" class="form-control" [class.is-invalid]="estChampInvalide('city')" [readonly]="!!selectedPatient" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="patientId">Patient associé <span class="required-star">*</span></label>
+          <select id="patientId" formControlName="patientId" class="form-control" [class.is-invalid]="estChampInvalide('patientId')" required>
+            <option value="">Sélectionner un patient</option>
+            <option *ngFor="let patient of patients" [value]="patient.id">
+              {{ patient.first_name }} {{ patient.last_name }} - {{ patient.cnie }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-cancel" [routerLink]="['/admin/assurances/gestion/liste']">Annuler</button>
+      <button type="submit" class="btn-submit" [disabled]="!isFormValid">
+        {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+      </button>
+    </div>
+  </form>
+</div>

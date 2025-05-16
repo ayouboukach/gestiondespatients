@@ -1,11 +1,13 @@
 .admin-layout {
   display: flex;
   min-height: 100vh;
+  width: 100%;
 }
 
 .main-content {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 10px; /* Match sidebar width */
   display: flex;
   flex-direction: column;
+  width: calc(100% - 250px);
 }

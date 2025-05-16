@@ -1,34 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+}
   
-  body {
+body {
     background-color: #f5f7fa;
-  }
-  
-  /* Fixed Navbar Styles */
-  app-navbar .navbar {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Fixed Navbar Styles */
+app-navbar .navbar {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 1000;
-    margin-left: 250px; /* Adjust based on sidebar width */
-    width: calc(100% - 250px);
-  }
+    margin-left: 260px; /* Adjusted to match sidebar width */
+    width: calc(100% - 260px);
+}
   
-  .main-content {
+.main-content {
     padding-top: 70px; /* Adjust based on navbar height */
-  }
+    width: 100%;
+    margin-left: 260px; /* Match sidebar width */
+}
   
-  /* Ensure other components don't overlap with fixed navbar */
-  app-content {
+/* Ensure other components don't overlap with fixed navbar */
+app-content {
     display: block;
-    padding-top: 10px;
-  }
+    padding-top: 0;
+    width: calc(100% - 260px); /* Adjust for sidebar width */
+    margin-left: 260px; /* Match sidebar width */
+}
+  
+/* Content wrapper to account for fixed sidebar */
+.content-wrapper {
+    margin-left: 260px; /* Match sidebar width */
+    width: calc(100% - 260px);
+    transition: margin-left 0.3s ease;
+}
+  
+/* Override Bootstrap container to ensure full width */
+.container, .container-fluid, .full-width-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Material styling overrides */
+.mat-mdc-list-item {
+    height: auto !important;
+}
+
+.mat-mdc-list-item-unscoped-content {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.material-icons {
+    display: inline-flex !important;
+    vertical-align: middle !important;
+}
   

@@ -12,17 +12,23 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {},
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist/out-tsc",
+    "downlevelIteration": true,
+    "useDefineForClassFields": false
   },
   "files": [],
-  "include": [],
+  "include": [
+    "src/**/*.ts",
+    "src/environments/*.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.editor.json"

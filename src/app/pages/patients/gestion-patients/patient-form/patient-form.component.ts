@@ -43,10 +43,22 @@ export class PatientFormComponent implements
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['initialData'] && changes['initialData'].currentValue) {
       const data = { ...changes['initialData'].currentValue };
-      if (data.birth_date && typeof data.birth_date === 'string') {
-        data.birth_date = new Date(data.birth_date);
+      if (data.birth_date && Array.isArray(data.birth_date)) {
+        const birthDate = data.birth_date as number[];
+        const date = new Date(
+          birthDate[0],
+          birthDate[1] - 1,
+          birthDate[2],
+          birthDate[3], 
+          birthDate[4] 
+        );
+        this.userForm.patchValue({
+          ...data,
+          birth_date: date.toISOString().split('T')[0]
+        });
+      } else {
+        this.userForm.patchValue(data);
       }
-      this.userForm.patchValue(data);
     }
   }
 
@@ -58,14 +70,25 @@ export class PatientFormComponent implements
         this.userId = +idParam;
   
         this.patientService.getPatientById(this.userId).subscribe(patient => {
-          if (patient?.birth_date) {
-            if (patient?.birth_date) {
-              //const birthDate = new Date(patient.birth_date);
-              console.log(patient.birth_date);
+          if (patient) {
+            if (patient.birth_date && Array.isArray(patient.birth_date)) {
+              const birthDate = patient.birth_date as number[];
+              const date = new Date(
+                birthDate[0], // year
+                birthDate[1] - 1, // month (0-based)
+                birthDate[2], // day
+                birthDate[3], // hour
+                birthDate[4] // minute
+              );
+              this.userForm.patchValue({
+                ...patient,
+                birth_date: date.toISOString().split('T')[0]
+              });
+            } else {
+              this.userForm.patchValue(patient);
             }
-
-          this.userForm.patchValue(patient);
-        }});
+          }
+        });
       }
     });
   }
@@ -103,7 +126,7 @@ export class PatientFormComponent implements
       emergency_contact: ['', Validators.required],
       ethnicity: ['', Validators.required],
       gender: ['', Validators.required],
-      birth_date: [Date, [Validators.required]],
+      birth_date: ['', Validators.required],
       age: ['', Validators.required],
       cnie: ['', Validators.required],
       nationality: ['', Validators.required],
@@ -124,22 +147,27 @@ export class PatientFormComponent implements
     if (this.userForm.valid) {
       const patientToSend = { ...this.userForm.value };
 
-      // spoken_languages doit être une string séparée par des virgules
+      // Gestion des langues parlées
       if (Array.isArray(patientToSend.spoken_languages)) {
         patientToSend.spoken_languages = patientToSend.spoken_languages.join(', ');
       }
 
-      // birth_date doit être au format yyyy-MM-ddTHH:mm:ss
-      if (patientToSend.birth_date instanceof Date) {
-        const d = patientToSend.birth_date;
-        patientToSend.birth_date = d.toISOString().slice(0, 19);
-      } else if (typeof patientToSend.birth_date === 'string' && patientToSend.birth_date.length === 10) {
-        patientToSend.birth_date = patientToSend.birth_date + 'T00:00:00';
+      // Formatage de la date de naissance
+      if (patientToSend.birth_date) {
+        const date = new Date(patientToSend.birth_date);
+        // Convert to array format expected by backend
+        patientToSend.birth_date = [
+          date.getFullYear(),
+          date.getMonth() + 1,
+          date.getDate(),
+          date.getHours(),
+          date.getMinutes()
+        ];
       }
 
-      // GENDER doit être en MAJUSCULES
+      // Gestion du genre en minuscules
       if (patientToSend.gender) {
-        patientToSend.gender = patientToSend.gender.toUpperCase();
+        patientToSend.gender = patientToSend.gender.toLowerCase();
       }
 
       if (this.isEditMode && this.userId) {

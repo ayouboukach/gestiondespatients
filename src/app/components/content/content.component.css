@@ -1,5 +1,6 @@
 .content-container {
-  padding: 20px 30px;
+  padding: 10px 15px;
   background-color: #f5f7fa;
   min-height: calc(100vh - 70px);
+  width: 100%;
 }

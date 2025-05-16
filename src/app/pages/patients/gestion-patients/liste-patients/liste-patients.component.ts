@@ -12,31 +12,32 @@ import { PatientService } from '../../../../services/patient.service';
   templateUrl: './liste-patients.component.html',
   styleUrls: ['./liste-patients.component.css']
 })
-export class ListeUtilisateursComponent implements OnInit {
+export class ListePatientsComponent implements OnInit {
   patients: Patient[] = [];
   filteredPatients: Patient[] = [];
   selectedPatient: Patient | null = null;
   showDeleteConfirmation = false;
   patientToDelete: number | null = null;
   searchTerm: string = '';
+  showAssurancesFor: number | null = null;
 
   constructor(private router: Router, private patientService: PatientService) {}
 
   ngOnInit() {
-    this.loadPatients();
+    this.chargerPatients();
     this.router.events.subscribe(() => {
-      this.loadPatients();
+      this.chargerPatients();
     });
   }
 
-  loadPatients() {
+  chargerPatients() {
     this.patientService.getAllPatients().subscribe((data) => {
       this.patients = data;
-      this.filterPatients();
+      this.filtrerPatients();
     });
   }
 
-  filterPatients() {
+  filtrerPatients() {
     if (!this.searchTerm.trim()) {
       this.filteredPatients = this.patients;
     } else {
@@ -49,24 +50,24 @@ export class ListeUtilisateursComponent implements OnInit {
   }
 
   onSearch() {
-    this.filterPatients();
+    this.filtrerPatients();
   }
 
-  deleteUser(id: number) {
+  supprimerUtilisateur(id: number) {
     this.patientToDelete = id;
     this.showDeleteConfirmation = true;
   }
 
-  cancelDelete() {
+  annulerSuppression() {
     this.showDeleteConfirmation = false;
     this.patientToDelete = null;
   }
 
-  confirmDelete() {
+  confirmerSuppression() {
     if (this.patientToDelete !== null) {
       this.patientService.deletePatient(this.patientToDelete).subscribe({
         next: () => {
-          this.loadPatients();
+          this.chargerPatients();
           this.showDeleteConfirmation = false;
           this.patientToDelete = null;
         },
@@ -75,15 +76,19 @@ export class ListeUtilisateursComponent implements OnInit {
     }
   }
 
-  showUserDetails(patient: Patient) {
+  afficherDetailsUtilisateur(patient: Patient) {
     this.selectedPatient = patient;
   }
 
-  hideUserDetails() {
+  cacherDetailsUtilisateur() {
     this.selectedPatient = null;
   }
 
-  modifyPatient(patient: Patient) {
+  modifierPatient(patient: Patient) {
     this.router.navigate(['/admin/patients/gestion/modifier', patient.id], { state: { patient } });
+  }
+
+  basculerAssurances(patient: Patient) {
+    this.showAssurancesFor = this.showAssurancesFor === patient.id ? null : patient.id;
   }
 } 
